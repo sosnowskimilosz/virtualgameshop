@@ -10,4 +10,5 @@ public class Player {
     String email;
     BigDecimal credits;
     Set<RentedGame> rentedGames;
+
 }
