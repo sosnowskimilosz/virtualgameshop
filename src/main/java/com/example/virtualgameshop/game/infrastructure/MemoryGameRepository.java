@@ -13,7 +13,6 @@ public class MemoryGameRepository implements GameRepository {
     private final Map<Long, Game> storage = new HashMap<>();
     private final AtomicLong ID_Value = new AtomicLong(0);
 
-
     @Override
     public List<Game> findAll() {
         return new ArrayList<>(storage.values());

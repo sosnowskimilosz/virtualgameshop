@@ -1,4 +1,4 @@
-package com.example.virtualgameshop;
+package com.example.virtualgameshop.game.domain;
 
 import com.example.virtualgameshop.game.domain.Game;
 import com.example.virtualgameshop.player.domain.Player;

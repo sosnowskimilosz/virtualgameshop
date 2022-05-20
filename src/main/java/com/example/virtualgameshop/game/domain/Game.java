@@ -14,6 +14,7 @@ public class Game {
     BigDecimal price;
     Duration availability;
     GameType gameType;
+    Long idOfCover;
 
     public Game(String title, BigDecimal price, Duration availability, GameType gameType) {
         this.title = title;
