@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<lombok.version>1.18.22</lombok.version>
 		<hibernate.validator.version>6.1.5.Final</hibernate.validator.version>
+		<postgres.version>42.2.18.jre7</postgres.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,9 +60,9 @@
 <!--		</dependency>-->
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgres.version}</version>
 		</dependency>
 
 		<dependency>
@@ -74,10 +75,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
 
 	</dependencies>
 

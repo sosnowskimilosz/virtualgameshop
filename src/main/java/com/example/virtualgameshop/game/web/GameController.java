@@ -79,10 +79,8 @@ public class GameController {
         @DecimalMin(message = "Price cannot be less than zero!", value = "0")
         BigDecimal price;
 
-        @NotNull
         Duration availability;
 
-        @NotBlank(message = "Game should have a type")
         GameType gameType;
 
         CreateGameCommand toCreateCommand(){

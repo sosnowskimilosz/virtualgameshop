@@ -6,6 +6,7 @@ import com.example.virtualgameshop.uploads.domain.Upload;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +29,11 @@ public class UploadService implements UploadUseCase {
 
     @Override
     public void removeById(Long id) {
-        repository.findById(id);
+        repository.deleteById(id);
+    }
+
+    @Override
+    public List<Upload> getAll() {
+        return repository.findAll();
     }
 }

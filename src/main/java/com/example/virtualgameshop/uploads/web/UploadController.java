@@ -1,6 +1,7 @@
 package com.example.virtualgameshop.uploads.web;
 
 import com.example.virtualgameshop.uploads.application.port.UploadUseCase;
+import com.example.virtualgameshop.uploads.domain.Upload;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Value;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/upload")
@@ -22,6 +24,11 @@ import java.time.LocalDateTime;
 public class UploadController {
 
     private final UploadUseCase uploadService;
+
+    @GetMapping
+    public List<Upload> getAll() {
+        return uploadService.getAll();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UploadResponse> getUpload(@PathVariable Long id) {

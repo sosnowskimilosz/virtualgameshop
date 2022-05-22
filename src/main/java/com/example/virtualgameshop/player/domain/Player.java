@@ -19,7 +19,7 @@ public class Player {
     String email;
     String password;
     BigDecimal credits;
-    Long idOfAvatar;
+    Long avatarId;
 //    Set<RentedGame> rentedGames;
 
 

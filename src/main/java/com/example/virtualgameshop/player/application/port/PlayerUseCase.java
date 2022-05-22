@@ -19,6 +19,18 @@ public interface PlayerUseCase {
 
     UpdatePlayerResponse updatePlayer(UpdatePlayerCommand command);
 
+    void updateUserAvatar(UpdateUserAvatarCommand command);
+
+    void removeUserAvatar(Long id);
+
+    @Value
+    class UpdateUserAvatarCommand {
+        Long id;
+        byte[] file;
+        String fileName;
+        String contentType;
+    }
+
     @Value
     class CreatePlayerCommand {
         String email;

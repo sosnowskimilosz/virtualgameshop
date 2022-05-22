@@ -5,6 +5,7 @@ import com.example.virtualgameshop.uploads.domain.Upload;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UploadUseCase {
@@ -14,6 +15,8 @@ public interface UploadUseCase {
     Optional<Upload> getById(Long id);
 
     void removeById(Long id);
+
+    List<Upload> getAll();
 
     @Value
     @AllArgsConstructor

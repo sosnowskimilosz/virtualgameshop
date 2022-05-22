@@ -3,6 +3,8 @@ package com.example.virtualgameshop.game.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.Duration;
 
@@ -13,6 +15,7 @@ public class Game {
     String title;
     BigDecimal price;
     Duration availability;
+    @Enumerated(EnumType.STRING)
     GameType gameType;
     Long idOfCover;
 
