@@ -2,7 +2,6 @@ package com.example.virtualgameshop.game.application.port;
 
 import com.example.virtualgameshop.game.domain.Game;
 import com.example.virtualgameshop.game.domain.GameType;
-import lombok.AllArgsConstructor;
 import lombok.Value;
 
 import java.math.BigDecimal;
@@ -25,6 +24,10 @@ public interface GameUseCase {
     Game addGame(CreateGameCommand command);
 
     UpdateGameResponse updateGame(UpdateGameCommand command);
+
+    void addGameCover(UpdateGameCoverCommand command);
+
+    void removeGameCover(Long id);
 
     @Value
     class CreateGameCommand {
@@ -69,5 +72,13 @@ public interface GameUseCase {
             }
             return game;
         }
+    }
+
+    @Value
+    class UpdateGameCoverCommand {
+        Long id;
+        byte[] file;
+        String fileName;
+        String fileType;
     }
 }

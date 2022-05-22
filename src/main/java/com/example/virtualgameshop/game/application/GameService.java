@@ -4,6 +4,9 @@ import com.example.virtualgameshop.game.application.port.GameUseCase;
 import com.example.virtualgameshop.game.db.GameJpaRepository;
 import com.example.virtualgameshop.game.domain.Game;
 import com.example.virtualgameshop.game.domain.GameType;
+import com.example.virtualgameshop.uploads.application.port.UploadUseCase;
+import com.example.virtualgameshop.uploads.application.port.UploadUseCase.SaveUploadCommand;
+import com.example.virtualgameshop.uploads.domain.Upload;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ import java.util.stream.Collectors;
 public class GameService implements GameUseCase {
 
     private final GameJpaRepository gameRepository;
+    private final UploadUseCase uploadService;
 
     @Override
     public List<Game> findAll() {
@@ -57,4 +61,28 @@ public class GameService implements GameUseCase {
                         false, Collections.singletonList("Game not found with id: " + command.getId())
                 ));
     }
+
+    @Override
+    public void addGameCover(UpdateGameCoverCommand command) {
+        gameRepository.findById(command.getId())
+                .ifPresent(game -> {
+                    Upload newUpload = uploadService.save(new SaveUploadCommand(command.getFile(), command.getFileName(), command.getFileType()));
+                    game.setCoverId(newUpload.getId());
+                    gameRepository.save(game);
+                });
+    }
+
+    @Override
+    public void removeGameCover(Long id) {
+        gameRepository.findById(id)
+                .ifPresent(game -> {
+                    if(game.getCoverId() != null){
+                        uploadService.removeById(game.getCoverId());
+                        game.setCoverId(null);
+                        gameRepository.save(game);
+                    }
+                });
+    }
+
+
 }

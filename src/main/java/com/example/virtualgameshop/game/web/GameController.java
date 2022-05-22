@@ -4,19 +4,23 @@ import com.example.virtualgameshop.CreatedURI;
 import com.example.virtualgameshop.game.application.port.GameUseCase;
 import com.example.virtualgameshop.game.application.port.GameUseCase.CreateGameCommand;
 import com.example.virtualgameshop.game.application.port.GameUseCase.UpdateGameCommand;
+import com.example.virtualgameshop.game.application.port.GameUseCase.UpdateGameCoverCommand;
 import com.example.virtualgameshop.game.application.port.GameUseCase.UpdateGameResponse;
 import com.example.virtualgameshop.game.domain.Game;
 import com.example.virtualgameshop.game.domain.GameType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.time.Duration;
@@ -67,6 +71,23 @@ public class GameController {
             String message = String.join(", ", response.getErrors());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
         }
+    }
+
+    @PutMapping(value = "/{id}/cover", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void addGameCover(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
+        service.addGameCover(new UpdateGameCoverCommand(
+                id,
+                file.getBytes(),
+                file.getOriginalFilename(),
+                file.getContentType()
+        ));
+    }
+
+    @DeleteMapping("/{id}/cover")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteGameCover(@PathVariable Long id){
+        service.removeGameCover(id);
     }
 
     @Data

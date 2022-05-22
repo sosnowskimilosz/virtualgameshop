@@ -22,7 +22,7 @@ public class Game {
     Duration availability;
     @Enumerated(EnumType.STRING)
     GameType gameType;
-    Long idOfCover;
+    Long coverId;
 
     public Game(String title, BigDecimal price, Duration availability, GameType gameType) {
         this.title = title;
