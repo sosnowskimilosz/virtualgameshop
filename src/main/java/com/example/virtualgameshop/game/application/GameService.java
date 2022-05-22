@@ -1,8 +1,8 @@
 package com.example.virtualgameshop.game.application;
 
 import com.example.virtualgameshop.game.application.port.GameUseCase;
+import com.example.virtualgameshop.game.db.GameJpaRepository;
 import com.example.virtualgameshop.game.domain.Game;
-import com.example.virtualgameshop.game.domain.GameRepository;
 import com.example.virtualgameshop.game.domain.GameType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class GameService implements GameUseCase {
 
-    private final GameRepository gameRepository;
+    private final GameJpaRepository gameRepository;
 
     @Override
     public List<Game> findAll() {
@@ -37,7 +37,7 @@ public class GameService implements GameUseCase {
 
     @Override
     public void removeById(Long id) {
-        gameRepository.removeById(id);
+        gameRepository.deleteById(id);
     }
 
     @Override

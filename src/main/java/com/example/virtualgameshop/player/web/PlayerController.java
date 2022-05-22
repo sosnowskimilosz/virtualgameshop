@@ -1,7 +1,6 @@
 package com.example.virtualgameshop.player.web;
 
 import com.example.virtualgameshop.CreatedURI;
-import com.example.virtualgameshop.player.application.PlayerService;
 import com.example.virtualgameshop.player.application.port.PlayerUseCase;
 import com.example.virtualgameshop.player.application.port.PlayerUseCase.CreatePlayerCommand;
 import com.example.virtualgameshop.player.application.port.PlayerUseCase.UpdatePlayerCommand;
@@ -89,6 +88,8 @@ public class PlayerController {
     public void removeUserAvatar(@PathVariable Long id){
         service.removeUserAvatar(id);
     }
+
+
 
     @Data
     private static class PlayerRestCommand {

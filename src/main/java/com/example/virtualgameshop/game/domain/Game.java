@@ -2,15 +2,20 @@ package com.example.virtualgameshop.game.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Duration;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Game {
+
+    @Id
+    @GeneratedValue
     Long id;
     String title;
     BigDecimal price;
